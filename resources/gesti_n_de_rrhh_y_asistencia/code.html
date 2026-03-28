@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clinical Atelier - HR &amp; Attendance Management</title>
+<!-- Google Fonts: Manrope & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d9dadb",
+              "surface-container-highest": "#e1e3e4",
+              "surface-container-high": "#e7e8e9",
+              "secondary-fixed-dim": "#84d5c5",
+              "secondary": "#046b5e",
+              "on-secondary-fixed": "#00201b",
+              "outline-variant": "#c6c5d4",
+              "on-primary-container": "#6b95f3",
+              "on-secondary": "#ffffff",
+              "tertiary": "#002103",
+              "tertiary-container": "#003909",
+              "primary-fixed-dim": "#b0c6ff",
+              "surface-tint": "#2b5bb5",
+              "secondary-fixed": "#a0f2e1",
+              "on-primary-fixed-variant": "#00429c",
+              "inverse-primary": "#b0c6ff",
+              "secondary-container": "#9defde",
+              "background": "#f8f9fa",
+              "tertiary-fixed": "#a3f69c",
+              "surface-container": "#edeeef",
+              "primary-container": "#002c6e",
+              "primary-fixed": "#d9e2ff",
+              "on-tertiary-container": "#5aa958",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#767683",
+              "surface-bright": "#f8f9fa",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#0f6f62",
+              "surface-container-low": "#f3f4f5",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "tertiary-fixed-dim": "#88d982",
+              "on-background": "#191c1d",
+              "inverse-surface": "#2e3132",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#454652",
+              "on-secondary-fixed-variant": "#005046",
+              "surface-variant": "#e1e3e4",
+              "primary": "#001944",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#002204",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed-variant": "#005312",
+              "on-primary-fixed": "#001945",
+              "surface": "#f8f9fa",
+              "on-surface": "#191c1d"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #191c1d; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen bg-background">
+<!-- SideNavBar Component -->
+<aside class="h-full w-64 fixed left-0 top-0 flex flex-col py-8 px-4 bg-slate-100 dark:bg-slate-900 border-none z-50">
+<div class="mb-10 px-4">
+<h1 class="text-xl font-bold text-blue-900 dark:text-white tracking-tighter">Clinical Atelier</h1>
+<p class="text-xs text-slate-500 font-medium">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors font-manrope text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors font-manrope text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                Patients
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-blue-900 dark:text-blue-400 font-bold border-l-4 border-blue-900 dark:border-blue-400 bg-white/50 dark:bg-white/5 font-manrope text-sm tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+                HR
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors font-manrope text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                Reports
+            </a>
+</nav>
+<div class="pt-8 mt-auto border-t border-slate-200 dark:border-slate-800 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors font-manrope text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors font-manrope text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Support
+            </a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="flex-1 ml-64 min-h-screen">
+<!-- TopNavBar Component -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 flex justify-between items-center h-16 px-8 bg-white/85 dark:bg-slate-950/85 backdrop-blur-md border-b border-slate-200/30 dark:border-slate-800/30 shadow-sm dark:shadow-none font-manrope text-sm">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-secondary/20 transition-all outline-none" placeholder="Search professional or specialty..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-slate-500 hover:text-teal-600 transition-all focus:ring-2 focus:ring-teal-500/20 rounded-full p-1">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="text-slate-500 hover:text-teal-600 transition-all focus:ring-2 focus:ring-teal-500/20 rounded-full p-1">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional portrait of a female doctor in a white lab coat with a warm and confident expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ksmARZpSlEJcwNt4kIC_h0XPeqR2RsHPciERt_QZpgpZofxbOFbjwdZo2D43CthEmMl7w1lMUb2PJvdw2UxWm2Lx0c0TxZxPzA-V0akQPr10PetK1Hcl58E8t_mm9YvTG5zDoewANHDY1luWvF9UxQDUNxqMr514OOMNTR_Vi0K67WFFYIzZOULAblChLLOkoK1ORi_KFpimkN5CBebePgv1k0LTTyC7wDcTDwwAlistKnohHZoatJkuT1sWnjK1JJtEv2_hKYBp"/>
+</div>
+</div>
+</header>
+<!-- Canvas Content Area -->
+<div class="pt-24 pb-12 px-12 space-y-10">
+<!-- Page Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-extrabold tracking-tight text-primary font-headline">Control de Asistencia y Desempeño</h2>
+<p class="text-on-surface-variant mt-1 font-body">Registro de actividad y cumplimiento horario del personal médico.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-low text-on-surface-variant font-medium rounded-lg hover:bg-surface-dim transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                        Exportar Informe
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary font-medium rounded-lg hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                        Nuevo Registro
+                    </button>
+</div>
+</div>
+<!-- Global Metrics: Bento Grid Layout -->
+<section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<!-- Metric Card: Punctuality -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border-l-2 border-secondary relative overflow-hidden">
+<div class="relative z-10">
+<span class="text-[0.6875rem] font-bold uppercase tracking-[0.05em] text-on-surface-variant block mb-2">Average Punctuality</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-extrabold text-primary font-headline">94.2%</span>
+<span class="text-xs text-secondary-fixed-dim font-bold flex items-center">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_upward">arrow_upward</span>
+                                1.2%
+                            </span>
+</div>
+</div>
+<div class="absolute bottom-0 right-0 w-24 h-16 opacity-10">
+<svg class="w-full h-full text-secondary fill-current" viewbox="0 0 100 40">
+<path d="M0,40 L0,20 Q20,10 40,25 T80,5 T100,20 L100,40 Z"></path>
+</svg>
+</div>
+</div>
+<!-- Metric Card: Total Hours -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border-l-2 border-primary relative overflow-hidden">
+<span class="text-[0.6875rem] font-bold uppercase tracking-[0.05em] text-on-surface-variant block mb-2">Total Monthly Hours</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-extrabold text-primary font-headline">1,842h</span>
+<span class="text-xs text-on-surface-variant font-medium">/ 2,000h meta</span>
+</div>
+<div class="mt-4 h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 82%"></div>
+</div>
+</div>
+<!-- Metric Card: Late Arrival Trend -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border-l-2 border-tertiary-fixed-dim relative overflow-hidden">
+<span class="text-[0.6875rem] font-bold uppercase tracking-[0.05em] text-on-surface-variant block mb-2">Late Arrival Trend</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-extrabold text-primary font-headline">-15%</span>
+<span class="text-xs text-secondary font-bold">Better than last month</span>
+</div>
+<div class="flex gap-1 mt-4 items-end h-8">
+<div class="w-full bg-surface-container-high h-6 rounded-sm"></div>
+<div class="w-full bg-surface-container-high h-8 rounded-sm"></div>
+<div class="w-full bg-secondary h-4 rounded-sm"></div>
+<div class="w-full bg-secondary h-3 rounded-sm"></div>
+<div class="w-full bg-secondary h-2 rounded-sm"></div>
+</div>
+</div>
+<!-- Critical Incidents Notification Card -->
+<div class="bg-primary-container text-white p-6 rounded-xl relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="warning">warning</span>
+<span class="text-[0.6875rem] font-bold uppercase tracking-[0.05em]">Failed Check-ins</span>
+</div>
+<span class="text-3xl font-extrabold font-headline">04</span>
+<p class="text-[10px] mt-2 opacity-80 leading-tight">Requires immediate attention from administration to verify unrecorded exits.</p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-8xl" data-icon="notification_important">notification_important</span>
+</div>
+</div>
+</section>
+<!-- Filters Section -->
+<section class="flex flex-wrap gap-4 items-center bg-surface-container-low p-4 rounded-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400" data-icon="calendar_month">calendar_month</span>
+<input class="bg-transparent border-none text-sm font-medium focus:ring-0 cursor-pointer" type="date" value="2023-10-24"/>
+</div>
+<div class="h-6 w-px bg-outline-variant opacity-30"></div>
+<select class="bg-transparent border-none text-sm font-medium focus:ring-0 cursor-pointer min-w-[140px]">
+<option>All Specialties</option>
+<option>Cardiology</option>
+<option>Neurology</option>
+<option>General Medicine</option>
+</select>
+<div class="h-6 w-px bg-outline-variant opacity-30"></div>
+<select class="bg-transparent border-none text-sm font-medium focus:ring-0 cursor-pointer min-w-[120px]">
+<option>All Status</option>
+<option>On Time</option>
+<option>Late</option>
+<option>Absent</option>
+</select>
+<div class="ml-auto flex gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-dim rounded-lg transition-all">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-dim rounded-lg transition-all">
+<span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+</button>
+</div>
+</section>
+<!-- Main Data Section: Table and Incident List -->
+<div class="grid grid-cols-1 xl:grid-cols-4 gap-8">
+<!-- Attendance Table: Col Span 3 -->
+<div class="xl:col-span-3 space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-primary">Profesionales en Turno</h3>
+<span class="text-xs font-medium text-on-surface-variant">Mostrando 24 resultados</span>
+</div>
+<div class="overflow-hidden rounded-xl bg-surface-container-lowest">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-dim/40">
+<th class="px-6 py-4 text-[0.6875rem] font-bold uppercase tracking-[0.05em] text-on-surface-variant">Professional</th>
+<th class="px-6 py-4 text-[0.6875rem] font-bold uppercase tracking-[0.05em] text-on-surface-variant">Specialty</th>
+<th class="px-6 py-4 text-[0.6875rem] font-bold uppercase tracking-[0.05em] text-on-surface-variant">Check-In</th>
+<th class="px-6 py-4 text-[0.6875rem] font-bold uppercase tracking-[0.05em] text-on-surface-variant">Check-Out</th>
+<th class="px-6 py-4 text-[0.6875rem] font-bold uppercase tracking-[0.05em] text-on-surface-variant">Total Hours</th>
+<th class="px-6 py-4 text-[0.6875rem] font-bold uppercase tracking-[0.05em] text-on-surface-variant">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden">
+<img alt="Doctor" class="w-full h-full object-cover" data-alt="professional portrait of a male doctor with glasses and stethoscope looking friendly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI5v2oAsd12YW_qV3u-EnSeaJOU-m3eNFBZYrXyAH7UcUmDbFbk-eHlCeJI4YOqVQG2t6B4LJQeIckjLh9z8F4VTueY_Qczh9mH5sJm8FuRor2WnNtYeVn-nogjmA8yKoh2JcbJrUjBmxkfTXqhLSUiZIWsZ6fPFGCX3jTgc81tnacj00-LHkJRyUETQCMtWb3bBxMXs9crNhK80bYxAUkt6japJcNfFlzRVcs-ldQD0IZIaogaDpQ9ta3vt0EjSry4PfPwZtLs3fh"/>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">Dr. Julian Richter</p>
+<p class="text-[10px] text-slate-500">ID: #44920</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm text-on-surface-variant">Cardiology</span>
+</td>
+<td class="px-6 py-4 font-mono text-xs font-medium">07:58 AM</td>
+<td class="px-6 py-4 font-mono text-xs font-medium">16:02 PM</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium">08h 04m</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-secondary-container text-on-secondary-container">On Time</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-low/20 hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden">
+<img alt="Doctor" class="w-full h-full object-cover" data-alt="close up profile of a female physician in medical scrubs with professional demeanor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArIeksDzztjVR1Cn82arYqG97B_kgWLpqNSup6IugOlyB5EsRRdXv8AEfoA7vmjnDqBC9BsUFK6o014YzIhUB6E8nDjiX2sOLg2YRtDuLGgI_ya0a-VFxRzdaW8YBcYcn_4V-lIWB0rJ41rrzWIj-pa4E4AZXd4qjPttn5N8qaJnL8_myJVwYcrhXeKp8FWUthR6CElXNTZHEaVGL6HoU00VQwvuwr8_ha6OkvWtyOrQTviAVlKro8REDJ8an0oYc5UEHTrx_h9t4x"/>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">Dra. Elena Vance</p>
+<p class="text-[10px] text-slate-500">ID: #44921</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm text-on-surface-variant">Neurology</span>
+</td>
+<td class="px-6 py-4 font-mono text-xs font-medium text-error">08:14 AM</td>
+<td class="px-6 py-4 font-mono text-xs font-medium">16:10 PM</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium">07h 56m</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-error-container text-on-error-container">Late</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden">
+<img alt="Doctor" class="w-full h-full object-cover" data-alt="portrait of a young smiling male healthcare worker in clinic environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_DujKrqu5-DtpNe5DUwIpNwwbIy3hAUETcfvFpbtNVpotaeCbk1jKa1-nrofCVqLgKNph8SBNdEnAukJ1nFVc9ga_0qb6_csygQ6Jbjlz-o2fv7J443zr8fD2Hk8Nevl8agFcvsN54yiVhe-oyb0raNATqRqoa9-fayaCajYFLiY0Qpp8eFlZyJ-b4O2IdlE000q50t9X9_wCm4VsfMbhRPFaBiY-YSx0VFZGCWZNnc_Ia2lfJJQdP-OJWhWUagolyg2ra3lc02E4"/>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">Dr. Marcus Thorne</p>
+<p class="text-[10px] text-slate-500">ID: #44922</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm text-on-surface-variant">Orthopedics</span>
+</td>
+<td class="px-6 py-4 font-mono text-xs font-medium">07:45 AM</td>
+<td class="px-6 py-4 font-mono text-xs font-medium">15:45 PM</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium">08h 00m</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-secondary-container text-on-secondary-container">On Time</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-low/20 hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3 opacity-50">
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden">
+<img alt="Doctor" class="w-full h-full object-cover" data-alt="professional headshot of a mature medical professional with a serious expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ4_9ZAvLt3UGSLfflFGCxQW3burOzIXedOINGIL8xQb_MzyDyME0u4E7PGyrXwzGDID6aIq_dUAmuOCx4fcQEqwQQcx_sVpeZKrIj7m4OjJnz4BvxAS-zUvWmGTQYpJ6FT1q2eEH2xEvR_hzdRPknIQCtXzdt0XyYjL6FIarjZdlPzjqp6xSxZytD9Tmv0RKus8kSf0cv0z-vlpC28sHpthXy44TwEv3xJ1eT8CNct_Q9hDAQwvWL0ySfLoVdi1tDNn7HxlcQKNn5"/>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">Dra. Sarah Chen</p>
+<p class="text-[10px] text-slate-500">ID: #44925</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 opacity-50">
+<span class="text-sm text-on-surface-variant">Pediatrics</span>
+</td>
+<td class="px-6 py-4 font-mono text-xs font-medium opacity-50">--:--</td>
+<td class="px-6 py-4 font-mono text-xs font-medium opacity-50">--:--</td>
+<td class="px-6 py-4 opacity-50">
+<span class="text-sm font-medium">00h 00m</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-surface-dim text-on-surface-variant">Absent</span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden">
+<img alt="Doctor" class="w-full h-full object-cover" data-alt="close up profile of a young medical student or doctor with dark hair and blue scrubs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2nxadKFHskR9kXi49iKOJiyiTeMfAzGZJ5c9w75uAni-OAxSzGcbJv05BSAMqBCcybXudJEL8ODo_OMfBcSQx6dzE7r0HoswQAyvCEWoPmWRF2fZb29JEJ407S6BYzVKrKgr0qPu9BBEQ2ilZ4_tSqKY-naXGbew7c0TCHaAYRVBA_0pED3tHtWV0ONN4P7gZXPeSRUnxYQUCdKoA95dXADa2rKsgEZ5XXgq46wHJoh5hTXPttOqedqfYisNF17G75UHFoozgoFqp"/>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">Dr. Alex Rivera</p>
+<p class="text-[10px] text-slate-500">ID: #44928</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm text-on-surface-variant">General Surgery</span>
+</td>
+<td class="px-6 py-4 font-mono text-xs font-medium text-error">08:45 AM</td>
+<td class="px-6 py-4 font-mono text-xs font-medium text-on-surface-variant">En turno</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium">06h 15m (Activo)</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-error-container text-on-error-container">Late</span>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-4 bg-surface-container-low/50 flex items-center justify-between border-t border-outline-variant/10">
+<span class="text-xs text-on-surface-variant">Página 1 de 4</span>
+<div class="flex gap-1">
+<button class="p-1 rounded hover:bg-surface-dim disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-dim">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Incident List: Col Span 1 -->
+<div class="xl:col-span-1 space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-primary">Incident List</h3>
+<span class="material-symbols-outlined text-error" data-icon="report">report</span>
+</div>
+<div class="space-y-4">
+<!-- Incident Item 1 -->
+<div class="p-4 bg-surface-container-lowest rounded-xl border-l-2 border-error shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-extrabold uppercase text-error tracking-widest">Failed Check-out</span>
+<span class="text-[9px] text-on-surface-variant">Hace 2 horas</span>
+</div>
+<p class="text-xs font-bold text-primary">Dr. Julian Richter</p>
+<p class="text-[11px] text-on-surface-variant mt-1">Salió del sistema sin marcar salida manual o biométrica.</p>
+<div class="mt-3 flex gap-2">
+<button class="text-[10px] font-bold text-secondary uppercase hover:underline">Resolver</button>
+<button class="text-[10px] font-bold text-on-surface-variant uppercase hover:underline">Notificar</button>
+</div>
+</div>
+<!-- Incident Item 2 -->
+<div class="p-4 bg-surface-container-lowest rounded-xl border-l-2 border-tertiary-fixed-dim shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-extrabold uppercase text-on-tertiary-fixed-variant tracking-widest">Unrecorded Entry</span>
+<span class="text-[9px] text-on-surface-variant">Ayer, 18:30</span>
+</div>
+<p class="text-xs font-bold text-primary">Dra. Sarah Chen</p>
+<p class="text-[11px] text-on-surface-variant mt-1">Detección de presencia física en consultorio 4 sin Check-in.</p>
+<div class="mt-3 flex gap-2">
+<button class="text-[10px] font-bold text-secondary uppercase hover:underline">Resolver</button>
+<button class="text-[10px] font-bold text-on-surface-variant uppercase hover:underline">Ignorar</button>
+</div>
+</div>
+<!-- Incident Item 3 -->
+<div class="p-4 bg-surface-container-lowest rounded-xl border-l-2 border-error shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-extrabold uppercase text-error tracking-widest">Failed Check-out</span>
+<span class="text-[9px] text-on-surface-variant">Ayer, 22:15</span>
+</div>
+<p class="text-xs font-bold text-primary">Dr. Marcus Thorne</p>
+<p class="text-[11px] text-on-surface-variant mt-1">Turno finalizado automáticamente por inactividad.</p>
+<div class="mt-3 flex gap-2">
+<button class="text-[10px] font-bold text-secondary uppercase hover:underline">Resolver</button>
+</div>
+</div>
+<!-- Call to action for more -->
+<button class="w-full py-2 text-xs font-bold text-primary bg-surface-container hover:bg-surface-dim rounded-lg transition-all text-center">
+                            Ver todos los incidentes (12)
+                        </button>
+</div>
+<!-- Punctuality Heatmap Simulation -->
+<div class="p-6 bg-white rounded-xl space-y-4">
+<h4 class="text-xs font-bold text-primary uppercase tracking-widest">Horas Pico de Retraso</h4>
+<div class="grid grid-cols-7 gap-1">
+<!-- Simple mock heatmap grid -->
+<div class="h-4 bg-surface-container rounded-sm"></div>
+<div class="h-4 bg-surface-container rounded-sm"></div>
+<div class="h-4 bg-secondary-container rounded-sm"></div>
+<div class="h-4 bg-secondary rounded-sm"></div>
+<div class="h-4 bg-secondary-container rounded-sm"></div>
+<div class="h-4 bg-surface-container rounded-sm"></div>
+<div class="h-4 bg-surface-container rounded-sm"></div>
+<div class="h-4 bg-surface-container rounded-sm"></div>
+<div class="h-4 bg-secondary rounded-sm"></div>
+<div class="h-4 bg-primary text-white flex items-center justify-center text-[8px] rounded-sm">!</div>
+<div class="h-4 bg-secondary rounded-sm"></div>
+<div class="h-4 bg-surface-container rounded-sm"></div>
+<div class="h-4 bg-surface-container rounded-sm"></div>
+<div class="h-4 bg-surface-container rounded-sm"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant italic">Los Lunes a las 08:00 AM presentan el mayor índice de incidencias.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

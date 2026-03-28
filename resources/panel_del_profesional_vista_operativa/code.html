@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Professional User Panel - Clinical Atelier</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Manrope & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d9dadb",
+              "surface-container-highest": "#e1e3e4",
+              "surface-container-high": "#e7e8e9",
+              "secondary-fixed-dim": "#84d5c5",
+              "secondary": "#046b5e",
+              "on-secondary-fixed": "#00201b",
+              "outline-variant": "#c6c5d4",
+              "on-primary-container": "#6b95f3",
+              "on-secondary": "#ffffff",
+              "tertiary": "#002103",
+              "tertiary-container": "#003909",
+              "primary-fixed-dim": "#b0c6ff",
+              "surface-tint": "#2b5bb5",
+              "secondary-fixed": "#a0f2e1",
+              "on-primary-fixed-variant": "#00429c",
+              "inverse-primary": "#b0c6ff",
+              "secondary-container": "#9defde",
+              "background": "#f8f9fa",
+              "tertiary-fixed": "#a3f69c",
+              "surface-container": "#edeeef",
+              "primary-container": "#002c6e",
+              "primary-fixed": "#d9e2ff",
+              "on-tertiary-container": "#5aa958",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#767683",
+              "surface-bright": "#f8f9fa",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#0f6f62",
+              "surface-container-low": "#f3f4f5",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "tertiary-fixed-dim": "#88d982",
+              "on-background": "#191c1d",
+              "inverse-surface": "#2e3132",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#454652",
+              "on-secondary-fixed-variant": "#005046",
+              "surface-variant": "#e1e3e4",
+              "primary": "#001944",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#002204",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed-variant": "#005312",
+              "on-primary-fixed": "#001945",
+              "surface": "#f8f9fa",
+              "on-surface": "#191c1d"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- SideNavBar -->
+<aside class="h-full w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-900 flex flex-col h-screen py-8 px-4 z-50">
+<div class="mb-10 px-4">
+<h1 class="text-xl font-bold text-blue-900 dark:text-white tracking-tighter">Clinical Atelier</h1>
+<p class="font-manrope text-sm font-medium tracking-tight text-slate-500">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Active State: Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-blue-900 dark:text-blue-400 font-bold border-l-4 border-blue-900 dark:border-blue-400 bg-white/50 dark:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-manrope text-sm tracking-tight">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-manrope text-sm tracking-tight">Patients</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-manrope text-sm tracking-tight">HR</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-manrope text-sm tracking-tight">Reports</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-800 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope text-sm tracking-tight">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-manrope text-sm tracking-tight">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-white/85 dark:bg-slate-950/85 backdrop-blur-md border-b border-slate-200/30 dark:border-slate-800/30 shadow-sm dark:shadow-none flex justify-between items-center h-16 px-8">
+<div class="flex items-center bg-surface-container-low px-4 py-2 rounded-full w-96">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full font-body placeholder:text-outline" placeholder="Search files or patients..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-teal-600 transition-all" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-teal-600 transition-all" data-icon="apps">apps</button>
+</div>
+<div class="flex items-center gap-3 pl-6 border-l border-outline-variant/30">
+<div class="text-right">
+<p class="text-sm font-bold text-primary tracking-tight">Dra. María García</p>
+<p class="text-[10px] uppercase tracking-widest text-secondary font-bold">Specialist in Neurology</p>
+</div>
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover ring-2 ring-secondary/20" data-alt="professional headshot of a female doctor in a clinical setting with soft natural lighting and warm atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA61JTlE2-TUkAtKYh4mwVoOCB_EB5C65ytKFWnQeqq5FqZywNrH0few08SoMspQ273SwhC_uddnPPgzsLg8oHIP-DIbKSxaLW2ikoYUZqBEqRJ5lNQXg7Oy5GoCbLNEu_xMqpva9QlUt_Gli0_6oChzz6K_W3gyIirl9cyKOTlr9EobeLza5Lf88Ewq-D0ZjS6gEiAEI7K_iEpDF8TO6AUeT0TlSlnWDd7NqESvMukNM-dRcKfrAnvZCxv7q38yCgQXrlXUtXxM1xg"/>
+</div>
+</div>
+</header>
+<section class="pt-24 pb-12 px-12 max-w-7xl mx-auto space-y-10">
+<!-- Hero Section: Daily Shift Control (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Time Tracking Card -->
+<div class="md:col-span-2 bg-surface-container-lowest rounded-xl p-8 flex items-center justify-between border-l-4 border-secondary shadow-[0_4px_20px_-4px_rgba(0,25,68,0.05)]">
+<div>
+<span class="text-[11px] uppercase tracking-[0.2em] font-bold text-on-surface-variant mb-2 block">Current Shift Status</span>
+<div class="flex items-baseline gap-4">
+<h2 class="text-5xl font-extrabold tracking-tighter text-primary">05:42:18</h2>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full">ACTIVE SESSION</span>
+</div>
+<p class="text-sm text-outline mt-2 font-body">Started today at <span class="text-on-surface font-semibold">08:30 AM</span></p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 bg-surface-container-low text-on-surface-variant px-6 py-4 rounded-lg font-bold text-sm hover:bg-surface-container transition-all group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform" data-icon="pause_circle">pause_circle</span>
+                            Break
+                        </button>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-8 py-4 rounded-lg font-bold text-sm hover:opacity-90 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                            Check-Out
+                        </button>
+</div>
+</div>
+<!-- Alert Card: Missing Documentation -->
+<div class="bg-primary-container text-white rounded-xl p-8 relative overflow-hidden flex flex-col justify-center">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4 text-secondary-fixed">
+<span class="material-symbols-outlined" data-icon="warning" data-weight="fill" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="text-xs font-bold uppercase tracking-widest">Pending Compliance</span>
+</div>
+<h3 class="text-xl font-bold leading-tight mb-2">2 Reports &amp; 1 Invoice missing for June</h3>
+<p class="text-sm text-blue-200 mb-4 font-body leading-relaxed">Ensure your documentation is up to date before the cycle closes in 3 days.</p>
+<a class="text-sm font-bold text-secondary-fixed flex items-center gap-1 group" href="#">
+                            Resolve now
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Decorative background element -->
+<div class="absolute -bottom-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+</div>
+</div>
+<!-- Task & Activity Section (Full Width Workspace) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- My Tasks: Upload Zone (Col 12) -->
+<div class="lg:col-span-12 space-y-6">
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-2xl font-extrabold tracking-tight text-primary">Task Workspace</h2>
+<span class="text-xs font-bold text-secondary uppercase tracking-widest">June Period</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Upload Monthly Report -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm group border border-transparent hover:border-secondary/20 transition-all">
+<div class="flex items-start justify-between mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-secondary/5 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-2xl" data-icon="description">description</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Upload Monthly Report</h4>
+<p class="text-xs text-outline font-body">Clinical progress and patient outcome summary</p>
+</div>
+</div>
+<span class="text-xs font-bold text-error uppercase tracking-widest">Required</span>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 items-end">
+<div class="flex-1 w-full">
+<label class="text-[10px] font-bold text-outline-variant uppercase mb-2 block">Select Patient</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-secondary/20 py-3">
+<option>Select patient from list...</option>
+<option>Carlos Mendoza - 4492</option>
+<option>Lucía Fernández - 1283</option>
+<option>Elena Rossi - 9921</option>
+</select>
+</div>
+<button class="bg-secondary text-on-secondary px-6 py-3 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-secondary/90 transition-all w-full sm:w-auto justify-center">
+<span class="material-symbols-outlined text-lg" data-icon="upload">upload</span>
+                                Upload File
+                            </button>
+</div>
+</div>
+<!-- Upload Invoice -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm group border border-transparent hover:border-secondary/20 transition-all">
+<div class="flex items-start justify-between mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-teal-50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-2xl" data-icon="receipt_long">receipt_long</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Submit Service Invoice</h4>
+<p class="text-xs text-outline font-body">Professional fees for the current medical period</p>
+</div>
+</div>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Optional</span>
+</div>
+<div class="border-2 border-dashed border-outline-variant/30 rounded-xl p-8 flex flex-col items-center justify-center bg-surface-bright hover:bg-surface-container-low transition-colors cursor-pointer group h-[116px]">
+<span class="material-symbols-outlined text-4xl text-outline group-hover:text-secondary mb-2 transition-colors" data-icon="cloud_upload">cloud_upload</span>
+<p class="text-sm font-medium text-on-surface">Drag &amp; drop your invoice PDF here</p>
+<p class="text-xs text-outline mt-1 font-body">or click to browse from computer</p>
+</div>
+</div>
+</div>
+<!-- Professional Image Area -->
+<div class="rounded-xl overflow-hidden relative h-64 shadow-lg group">
+<img alt="Modern clinic interior" class="w-full h-full object-cover grayscale-[30%] group-hover:scale-105 transition-transform duration-700" data-alt="ultra-modern minimalist clinical hallway with soft architectural lighting and glass walls creating a professional serene atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVnUqFx4FXgH_2hfcbMJbv1GHoBVhl4Xk44dqf3GUKj-iaT7R45Q2PTfcYSFg4RQzSIPY5W34Ygk0yN0f29DmXtVPHUxXFEEjdiV_PUG1yPp9G34iy6nc1k0tFbk1-yMxxNecAq07cdae00xOdU52wTh2TzIXgIWlyFN7L1c-C3DhiqxB6zU7snWbYuLKzDMQqejjJCgiaBpz7fbpuX721GIILz4W1aq7AHDm6QNO-aztgeYGKL4c49qj3-yNwzgHI70yMvS1K21a3"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-8">
+<p class="text-white text-lg font-medium italic leading-relaxed max-w-2xl">"Precision in documentation ensures the highest standard of patient care."</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Compliance Area -->
+<div class="pt-8 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[10px] text-outline font-body uppercase tracking-[0.2em]">Clinical Atelier © 2024 • Regulatory Compliance Certified</p>
+<div class="flex gap-6">
+<a class="text-[10px] font-bold text-on-surface-variant hover:text-primary uppercase tracking-widest transition-colors" href="#">Privacy Policy</a>
+<a class="text-[10px] font-bold text-on-surface-variant hover:text-primary uppercase tracking-widest transition-colors" href="#">Internal Protocols</a>
+<a class="text-[10px] font-bold text-on-surface-variant hover:text-primary uppercase tracking-widest transition-colors" href="#">Support Center</a>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB for quick patients access -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-secondary text-white rounded-full flex items-center justify-center shadow-xl shadow-secondary/30 hover:scale-110 transition-transform z-50">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+</body></html>

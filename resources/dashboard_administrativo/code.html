@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clinical Atelier | Admin Portal</title>
+<!-- Google Fonts: Manrope & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d9dadb",
+              "surface-container-highest": "#e1e3e4",
+              "surface-container-high": "#e7e8e9",
+              "secondary-fixed-dim": "#84d5c5",
+              "secondary": "#046b5e",
+              "on-secondary-fixed": "#00201b",
+              "outline-variant": "#c6c5d4",
+              "on-primary-container": "#6b95f3",
+              "on-secondary": "#ffffff",
+              "tertiary": "#002103",
+              "tertiary-container": "#003909",
+              "primary-fixed-dim": "#b0c6ff",
+              "surface-tint": "#2b5bb5",
+              "secondary-fixed": "#a0f2e1",
+              "on-primary-fixed-variant": "#00429c",
+              "inverse-primary": "#b0c6ff",
+              "secondary-container": "#9defde",
+              "background": "#f8f9fa",
+              "tertiary-fixed": "#a3f69c",
+              "surface-container": "#edeeef",
+              "primary-container": "#002c6e",
+              "primary-fixed": "#d9e2ff",
+              "on-tertiary-container": "#5aa958",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#767683",
+              "surface-bright": "#f8f9fa",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#0f6f62",
+              "surface-container-low": "#f3f4f5",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "tertiary-fixed-dim": "#88d982",
+              "on-background": "#191c1d",
+              "inverse-surface": "#2e3132",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#454652",
+              "on-secondary-fixed-variant": "#005046",
+              "surface-variant": "#e1e3e4",
+              "primary": "#001944",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#002204",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed-variant": "#005312",
+              "on-primary-fixed": "#001945",
+              "surface": "#f8f9fa",
+              "on-surface": "#191c1d"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased">
+<!-- Shared SideNavBar -->
+<aside class="h-full w-64 fixed left-0 top-0 bg-slate-100 flex flex-col py-8 px-4 z-50">
+<div class="mb-10 px-2">
+<h1 class="text-xl font-bold text-blue-900 tracking-tighter">Clinical Atelier</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mt-1">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-blue-900 font-bold border-l-4 border-blue-900 bg-white/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-manrope text-sm font-medium tracking-tight">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-blue-900 hover:bg-slate-200 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-manrope text-sm font-medium tracking-tight">Patients</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-blue-900 hover:bg-slate-200 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-manrope text-sm font-medium tracking-tight">HR</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-blue-900 hover:bg-slate-200 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-manrope text-sm font-medium tracking-tight">Reports</span>
+</a>
+</nav>
+<div class="pt-6 mt-6 border-t border-slate-200 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-blue-900 hover:bg-slate-200 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope text-sm font-medium tracking-tight">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-500 hover:text-blue-900 hover:bg-slate-200 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-manrope text-sm font-medium tracking-tight">Support</span>
+</a>
+</div>
+</aside>
+<!-- Shared TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-white/85 backdrop-blur-md shadow-sm flex justify-between items-center h-16 px-8">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-secondary/20 font-manrope text-sm transition-all" placeholder="Search medical records, staff, or documents..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-500 hover:text-teal-600 transition-all relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="text-slate-500 hover:text-teal-600 transition-all">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-sm font-semibold text-primary">Dr. Julian Thorne</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Chief Administrator</p>
+</div>
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover ring-2 ring-slate-100" data-alt="professional portrait of a middle aged male doctor with short hair and clean shaven face in a white clinical coat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAokIwB-pukZVn2ZqfH4QHEWeVvZe4CTh_I51mVUWk9sbWbWV42xrxfmZLbgr6QtGh5wfGZOi-QMs7n2Cj5yy2ibPBVB93ybFDdBHGx9DQKb7NCJmvDzbejhENRDQ1H4Js0K8QZ7-BopyfUQkAU4NY9vgAoG5DtY5KK5IvJzYhrcavP-s05sKqhXzJFxRvnuNN7F7BqX5g5i-Yr1zM_oubMUSVotYTT6iJqP26WawJILcN1bttQ_d2qG2KEELg2_KnM3cOqun8rBmGX"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-64 pt-24 pb-12 px-12">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-10">
+<div class="space-y-1">
+<h2 class="text-3xl font-extrabold text-primary tracking-tight">Clinical Overview</h2>
+<p class="text-on-surface-variant font-medium">Monday, Oct 23rd — System status: <span class="text-secondary font-bold">Operational</span></p>
+</div>
+<div class="flex gap-3">
+<button class="bg-secondary-container text-on-secondary-container px-5 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-lg" data-icon="person_add">person_add</span>
+                    Add Patient
+                </button>
+<button class="bg-primary text-on-primary px-5 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity" style="background: linear-gradient(135deg, #001944 0%, #002c6e 100%)">
+<span class="material-symbols-outlined text-lg" data-icon="mail">mail</span>
+                    Invite Professional
+                </button>
+</div>
+</div>
+<!-- Metric Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<!-- Metric Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border-l-[3px] border-secondary flex flex-col justify-between shadow-sm">
+<div>
+<p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Total Active Patients</p>
+<h3 class="text-4xl font-extrabold text-primary tracking-tighter">1,248</h3>
+</div>
+<div class="mt-4 flex items-center gap-2 text-secondary text-xs font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+                    +12% from last month
+                </div>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border-l-[3px] border-secondary flex flex-col justify-between shadow-sm">
+<div>
+<p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Professional Compliance</p>
+<h3 class="text-4xl font-extrabold text-primary tracking-tighter">94.2%</h3>
+</div>
+<div class="mt-4 w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[94.2%]"></div>
+</div>
+</div>
+<!-- Metric Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border-l-[3px] border-secondary flex flex-col justify-between shadow-sm">
+<div>
+<p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Pending Reports</p>
+<h3 class="text-4xl font-extrabold text-primary tracking-tighter">18</h3>
+</div>
+<div class="mt-4 flex items-center gap-2 text-tertiary-fixed-dim text-xs font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="priority_high">priority_high</span>
+                    4 requires urgent review
+                </div>
+</div>
+<!-- Metric Card 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border-l-[3px] border-secondary flex flex-col justify-between shadow-sm">
+<div>
+<p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Monthly Hours</p>
+<h3 class="text-4xl font-extrabold text-primary tracking-tighter">4,820</h3>
+</div>
+<div class="mt-4 flex items-center gap-2 text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+                    Estimated: 5,100 hrs
+                </div>
+</div>
+</div>
+<!-- Asymmetric Content Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Compliance Activity Feed (Left 8 cols) -->
+<div class="col-span-8 space-y-6">
+<div class="flex justify-between items-center">
+<h3 class="text-xl font-bold text-primary tracking-tight">Compliance Activity Feed</h3>
+<button class="text-secondary text-sm font-semibold flex items-center gap-1 hover:underline">
+                        View Archive <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-dim/30">
+<tr>
+<th class="px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Document / Professional</th>
+<th class="px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Type</th>
+<th class="px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Timestamp</th>
+<th class="px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Status</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="description">description</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">Monthly Clinical Report</p>
+<p class="text-xs text-on-surface-variant">Dr. Sarah Jenkins</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Clinical Report</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Today, 10:45 AM</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider rounded-full">Validated</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-slate-400" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="receipt_long">receipt_long</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">Operational Invoice #882</p>
+<p class="text-xs text-on-surface-variant">Admin Dept.</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Invoice</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Today, 08:22 AM</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold uppercase tracking-wider rounded-full">Pending</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-slate-400" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="history_edu">history_edu</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">Nurse Certification Renewal</p>
+<p class="text-xs text-on-surface-variant">Marcus Reed</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">HR Compliance</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Yesterday, 4:15 PM</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider rounded-full">Validated</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-slate-400" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-primary p-8 rounded-xl relative overflow-hidden text-white" style="background: linear-gradient(135deg, #001944 0%, #002c6e 100%)">
+<div class="relative z-10">
+<h4 class="text-2xl font-bold mb-2">Compliance Review Needed</h4>
+<p class="max-w-md text-primary-fixed-dim text-sm">There are 4 high-priority clinical audit files that require administrative signature by the end of the day.</p>
+<button class="mt-6 bg-white text-primary px-6 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-secondary-fixed transition-colors">
+                            Review Documents Now
+                            <span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Decorative element -->
+<div class="absolute -right-12 -bottom-12 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+</div>
+</div>
+<!-- Assistance Summary (Right 4 cols) -->
+<aside class="col-span-4 space-y-6">
+<div class="flex justify-between items-center">
+<h3 class="text-xl font-bold text-primary tracking-tight">Assistance Summary</h3>
+<span class="text-xs font-bold text-on-surface-variant">Daily Average: 92%</span>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm space-y-6">
+<!-- Simple Bar Chart Visualization -->
+<div class="space-y-4">
+<div class="flex items-end gap-2 h-32 px-2">
+<div class="flex-1 bg-secondary/20 rounded-t-sm hover:bg-secondary transition-colors group relative h-[80%]">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">92%</div>
+</div>
+<div class="flex-1 bg-secondary/20 rounded-t-sm hover:bg-secondary transition-colors group relative h-[95%]">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">98%</div>
+</div>
+<div class="flex-1 bg-secondary/20 rounded-t-sm hover:bg-secondary transition-colors group relative h-[70%]">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">85%</div>
+</div>
+<div class="flex-1 bg-secondary/20 rounded-t-sm hover:bg-secondary transition-colors group relative h-[85%]">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">91%</div>
+</div>
+<div class="flex-1 bg-secondary/20 rounded-t-sm hover:bg-secondary transition-colors group relative h-[60%]">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">78%</div>
+</div>
+<div class="flex-1 bg-secondary rounded-t-sm group relative h-[92%]">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-100">92%</div>
+</div>
+<div class="flex-1 bg-surface-container rounded-t-sm h-[10%]"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pt-2 border-t border-slate-100">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span class="text-secondary">Sat</span>
+<span>Sun</span>
+</div>
+</div>
+<!-- Late Arrivals List -->
+<div class="space-y-4 pt-2">
+<p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest">Notable Discrepancies</p>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-transparent hover:border-outline-variant transition-all">
+<div class="flex items-center gap-3">
+<img alt="Staff Member" class="w-8 h-8 rounded-full object-cover" data-alt="professional headshot of a smiling black woman with hair tied back in a corporate setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXVCrsRjgrrxMEzr6N6VHkpcLgIrztJ_d-VxrlqRZCJ4OU1L-ytiDoVnaZJWhVHnvSNwpYcuMT7_EerXSOg4_MzDzAUzHsnLXe7-BzE6FRiz1TEyvjmfA3LAqG9zdN9xLXy1STHjC6aPyFQXllmEDExelMRz7cUvVd2KY3iACQPc54knwTfx4cFelEVklZb256pJFLUBhD1Ua8pXaMv6dLzGuDr7RoPIvvs8UzZi2S12gd5fp9SRGXuX_ldvjHJ-FFBrTXXWZVe97x"/>
+<div>
+<p class="text-xs font-bold text-primary">Elena Rodriguez</p>
+<p class="text-[10px] text-error font-medium">Late Arrival (15m)</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-lg" data-icon="chat_bubble">chat_bubble</span></button>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-transparent hover:border-outline-variant transition-all">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-bold text-[10px]">TB</div>
+<div>
+<p class="text-xs font-bold text-primary">Thomas Braid</p>
+<p class="text-[10px] text-tertiary-fixed-dim font-medium">Unscheduled Absence</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-lg" data-icon="chat_bubble">chat_bubble</span></button>
+</div>
+</div>
+</div>
+<!-- Quick Insights -->
+<div class="pt-4 border-t border-slate-100">
+<div class="bg-surface-container-high rounded-lg p-4 flex gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="lightbulb">lightbulb</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">Attendance is <span class="text-secondary font-bold">4% higher</span> on Saturdays compared to last quarter's average.</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Footer / Credits -->
+<footer class="mt-16 pt-8 border-t border-slate-200 flex justify-between items-center text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em]">
+<span>© 2023 Clinical Atelier Systems</span>
+<div class="flex gap-8">
+<a class="hover:text-primary transition-colors" href="#">Security Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Audit Logs</a>
+<a class="hover:text-primary transition-colors" href="#">V1.4.2-Stable</a>
+</div>
+</footer>
+</main>
+<!-- FAB (Suppressed based on logic - but added small utility for dashboard context) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-50 group">
+<span class="material-symbols-outlined" data-icon="add" style="font-variation-settings: 'FILL' 0, 'wght' 700;">add</span>
+<span class="absolute right-full mr-4 bg-primary text-white px-4 py-2 rounded-lg text-xs font-bold opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity pointer-events-none">New Urgent Request</span>
+</button>
+</body></html>
